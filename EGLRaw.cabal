@@ -1,31 +1,37 @@
-Name:		EGLRaw
-Version:	0.0
-Synopsis:	binding to EGL (low level)
-Description: 	binding to EGL (low level)
-License: 	BSD3
-License-file:	LICENSE
-Author:		Ian-Woo Kim
-Maintainer: 	Ian-Woo Kim <ianwookim@gmail.com>
-Build-Type: 	Custom
+Name:           EGLRaw
+Version:        0.0
+License:        BSD3
+License-file:   LICENSE
+Copyright:      
+Author:         Ian-Woo Kim
+Maintainer:     Ian-Woo Kim (ianwookim@gmail.com)
+Build-Type:     Custom
 Cabal-Version:  >= 1.8
-data-files:     
+Stability:      stable
+homepage:       http://projects.haskell.org/gtk2hs/
+bug-reports:    http://hackage.haskell.org/trac/gtk2hs/
+Synopsis:       Binding to the Cairo library with OpenGL 
+Description:    
+Category:       Graphics
+Tested-With:    GHC == 7.0.4, GHC == 7.2.2, GHC == 7.4.1
+extra-source-files: egl-gtk2hs.h
+                    SetupWrapper.hs 
+                    SetupMain.hs
+                    Gtk2HsSetup.hs
 
-
-
+				
 Library
-  hs-source-dirs: src
-  ghc-options: 	-Wall -O2 -threaded -funbox-strict-fields -fno-warn-unused-do-bind
-  ghc-prof-options: -caf-all -auto-all
-  Build-Depends: 
-                   base>4, 
-                   mtl>2, 
-                   directory, 
-                   filepath,
-                   cmdargs
-  Exposed-Modules: 
-                   Graphics.Rendering.EGL.Raw 
+        build-depends:  base >= 4 && < 5,
+                        bytestring, 
+                        mtl, 
+                        array
+        build-tools:    gtk2hsC2hs >= 0.13.5,
+                        gtk2hsTypeGen
+        exposed-modules:  Graphics.Rendering.EGL.Raw
+                          Graphics.Rendering.EGL.Raw.Types
+        other-modules:
+        extensions:     ForeignFunctionInterface
+        Include-dirs: .
+        x-c2hs-Header: egl-gtk2hs.h  
+        pkgconfig-depends: egl
 
-  Other-Modules: 
-
- 
-		 
